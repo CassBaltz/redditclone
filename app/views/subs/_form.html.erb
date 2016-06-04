@@ -1,0 +1,23 @@
+<% verb= subscription.persisted? ? "PATCH" : "POST" %>
+<% url = subscription.persisted? ? sub_url(subscription) : subs_url %>
+<% button_text = subscription.persisted? ? "update" : "create" %>
+
+
+<form action="<%= url %>" method="post">
+  <input type="hidden" name="_method" value= "<%=verb%>">
+  <%= auth_token %>
+  <label for="title">title: </label>
+  <input type="text" name="sub[title]" value=" <%=subscription.title%>" id="title">
+
+  <br>
+  <br>
+
+  <label for="description">description: </label>
+  <textarea name="sub[description]" rows="8" cols="40" id="description" ><%=subscription.description%></textarea>
+
+  <br>
+  <br>
+
+  <button type="submit" name="button"><%= button_text %></button>
+
+</form>

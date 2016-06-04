@@ -1,0 +1,36 @@
+<% verb= post.persisted? ? "PATCH" : "POST" %>
+<% url = post.persisted? ? post_url(post) : posts_url %>
+<% button_text = post.persisted? ? "update" : "create" %>
+
+
+<form action="<%= url %>" method="post">
+  <input type="hidden" name="_method" value= "<%=verb%>">
+  <%= auth_token %>
+  <label for="title">title: </label>
+  <input type="text" name="post[title]" value=" <%=post.title%>" id="title">
+
+  <br>
+  <br>
+
+  <label for="content"> </label>
+  <textarea name="post[content]" rows="8" cols="40"> <%= post.content %> </textarea>
+
+  <br>
+  <br>
+
+  <label for="url">url:</label>
+  <input type="text" name="post[url]" value="<%=post.title%>" id="url">
+  <br>
+  <br>
+
+  <select name="post[sub_id]">
+    <option value="" selected="true" disabled>--Pick a Sub--</option>
+    <% subs.each do |sb| %>
+    <option value="<%=sb.id%>"> <%=sb.title %> </option> <br>
+    <% end %>
+  </select>
+  <br>
+  <br>
+  <button type="submit" name="button"><%= button_text %></button>
+
+</form>

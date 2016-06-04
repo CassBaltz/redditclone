@@ -1,0 +1,13 @@
+<h1>  <%= @post.title %> by <%= @author.username %> </h1>
+
+<p>
+  content: <%= @post.content || "No content"%>
+</p>
+
+<br>
+
+<p>
+  url: <%= @post.url || "No url" %>
+</p>
+
+<%= link_to "edit", edit_post_url(@post) %>

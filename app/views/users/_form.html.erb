@@ -1,0 +1,23 @@
+<% verb= user.persisted? ? "PATCH" : "POST" %>
+<% url = user.persisted? ? user_url(user) : users_url %>
+<% button_text = user.persisted? ? "update" : "create" %>
+
+
+<form action="<%= url %>" method="post">
+  <input type="hidden" name="_method" value= "<%=verb%>">
+  <%= auth_token %>
+  <label for="username">Username: </label>
+  <input type="text" name="user[username]" value=" <%=user.username%>" id="username">
+
+  <br>
+  <br>
+
+  <label for="password">Password: </label>
+  <input type="password" name="user[password]" value="" id="password" >
+
+  <br>
+  <br>
+
+  <button type="submit" name="button"><%= button_text %></button>
+
+</form>
